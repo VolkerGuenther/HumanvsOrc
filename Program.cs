@@ -56,7 +56,7 @@ namespace HumanvsOrc
                                 //Hero Attacke parrierd
                                 else if (AttackrndH < Heroes[0].Attackvalue && DefendrndO <= Orcs[1].Paradevalue)
                                 {
-                                    Console.WriteLine("Aktion Held ->  Angriff vom Held parriert");
+                                    Console.WriteLine("Aktion Held -> Angriff vom Held parriert");
                                 }
                                 // Hero Attacke misslungen
                                 else if (AttackrndH > Heroes[0].Attackvalue)
@@ -73,12 +73,12 @@ namespace HumanvsOrc
                     //Hero Attacke parrierd
                     else if (AttackrndH < Heroes[0].Attackvalue && DefendrndO <= Orcs[0].Paradevalue)
                     {
-                        Console.WriteLine("Aktion Held ->  Angriff vom Held parriert");
+                        Console.WriteLine("Aktion Held -> Angriff vom Held parriert");
                     }
                     // Hero Attacke misslungen
                     else if (AttackrndH > Heroes[0].Attackvalue)
                     {
-                        Console.WriteLine(" Aktion Held -> Attacke auf den Ork misslungen");
+                        Console.WriteLine("Aktion Held -> Attacke auf den Ork misslungen");
                     }
 
 
