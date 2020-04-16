@@ -26,6 +26,11 @@ namespace HumanvsOrc
             }
 
             Console.WriteLine($"Startwerte: ");
+            Console.WriteLine($"Daten vom Ork : {Orcs[0].getdateRed()}");
+            Console.WriteLine($"Daten vom Ork 1 : {Orcs[1].getdateRed()}");
+            Console.WriteLine($"Daten vom Hero : {Heroes[0].getdateRed()}");
+            Console.WriteLine($"Daten vom Hero 1 : {Heroes[1].getdateRed()} \n \n");
+
 
             while (Heroes[0].Lifepoints >= 0) // Falls Held stirbt, wird die Schleife abgebrochen
             {
@@ -35,92 +40,92 @@ namespace HumanvsOrc
                 int AttackrndO = A_D_rnd.Next(1, 20); // Attacke Orc - Random
                 int DefendrndO = A_D_rnd.Next(1, 20); // Parade Orc - Random
 
-                //------------------------------------------------
+                //---------------Attacke Held----------------
                 if (Orcs[0].Lifepoints <= 0) 
                 {
                             if (Orcs[1].Lifepoints <= 0) // Falls Orc stribt -> Schleife wird abgebrochen
                             {
                                 break;
                             }
-                                //Hero Attack gelungen - Orc1 Parade fehlgeschlagen
+                                //Hero Attacke gelungen - Orc1 Parade fehlgeschlagen
                                 else if (AttackrndH <= Heroes[0].Attackvalue && DefendrndO > Orcs[1].Paradevalue)
                                 {
                                     Orcs[1].Lifepoints = Orcs[1].Lifepoints - Heroes[0].Damage;
-                                    Console.WriteLine($"Ork1 hat {Orcs[1].Lifepoints} Lebenspunkte ");
+                                    Console.WriteLine($"Aktion Held -> Ork1 hat {Orcs[1].Lifepoints} Lebenspunkte ");
                                 }
-                                //Hero Attack parrierd
+                                //Hero Attacke parrierd
                                 else if (AttackrndH < Heroes[0].Attackvalue && DefendrndO <= Orcs[1].Paradevalue)
                                 {
-                                    Console.WriteLine("Attacke vom Held parriert");
+                                    Console.WriteLine("Aktion Held ->  Angriff vom Held parriert");
                                 }
                                 // Hero Attacke misslungen
                                 else if (AttackrndH > Heroes[0].Attackvalue)
                                 {
-                                    Console.WriteLine("Attacke von Held misslungen");
+                                    Console.WriteLine("Aktion Held ->  Attacke auf dem Ork misslungen");
                                 }
                 }
-                    //Hero Attack gelungen - Orc Parade fehlgeschlagen
+                    //Hero Attacke gelungen - Orc Parade fehlgeschlagen
                     else if (AttackrndH <= Heroes[0].Attackvalue && DefendrndO > Orcs[0].Paradevalue)
                     {
                         Orcs[0].Lifepoints = Orcs[0].Lifepoints - Heroes[0].Damage;
-                        Console.WriteLine($"Ork hat {Orcs[0].Lifepoints} Lebenspunkte ");
+                        Console.WriteLine($"Aktion Held ->  Ork hat {Orcs[0].Lifepoints} Lebenspunkte ");
                     }
-                    //Hero Attack parrierd
+                    //Hero Attacke parrierd
                     else if (AttackrndH < Heroes[0].Attackvalue && DefendrndO <= Orcs[0].Paradevalue)
                     {
-                        Console.WriteLine("Attacke vom Held parriert");
+                        Console.WriteLine("Aktion Held ->  Angriff vom Held parriert");
                     }
                     // Hero Attacke misslungen
                     else if (AttackrndH > Heroes[0].Attackvalue)
                     {
-                        Console.WriteLine("Attacke von Held misslungen");
+                        Console.WriteLine(" Aktion Held -> Attacke auf den Ork misslungen");
                     }
 
 
-                //------------------------------------------
+                //-------------------Attacke Orc----------
                 if(Orcs[0].Lifepoints <= 0) 
                 {
                             if(Orcs[1].Lifepoints <= 0) // Falls Orc stribt -> Schleife wird abgebrochen
                             {
                                 break;
                             }
-                            //Orc1 Attack gelungen - Held Parade fehlgeschlagen
+                            //Orc1 Attacke gelungen - Held Parade fehlgeschlagen
                             else if (AttackrndO <= Orcs[1].Attackvalue && DefendrndH > Heroes[0].Paradevalue)
                             {
                                 Heroes[0].Lifepoints = Heroes[0].Lifepoints - Orcs[1].Damage;
-                                Console.WriteLine($"Hero hat {Heroes[0].Lifepoints} Lebenspunkte " + "\n");
+                                Console.WriteLine($"Aktion Ork1 -> Hero hat {Heroes[0].Lifepoints} Lebenspunkte " + "\n");
                             }
-                            //Orc1 Attack parrierd
+                            //Orc1 Attacke parrierd
                             else if (AttackrndO < Orcs[1].Attackvalue && DefendrndH <= Orcs[1].Paradevalue)
                             {
-                                Console.WriteLine("Attacke vom Ork 1 parriert" + "\n");
+                                Console.WriteLine("Aktion Ork1 -> Angriff vom Ork 1 parriert" + "\n");
                             }
                             // Orc1 Attacke misslungen
                             else if (AttackrndO > Orcs[1].Attackvalue)
                             {
-                                Console.WriteLine("Attacke Ork 1 misslungen" + "\n");
+                                Console.WriteLine("Aktion Ork1 -> Attacke auf Held misslungen" + "\n");
                             }
                 }
-                    //Orc Attack gelungen - Held Parade fehlgeschlagen
+                    //Orc Attacke gelungen - Held Parade fehlgeschlagen
                     else if (AttackrndO <= Orcs[0].Attackvalue && DefendrndH > Heroes[0].Paradevalue)
                     {
                         Heroes[0].Lifepoints = Heroes[0].Lifepoints - Orcs[0].Damage;
-                        Console.WriteLine($"Hero hat {Heroes[0].Lifepoints} Lebenspunkte " + "\n");
+                        Console.WriteLine($"Aktion Ork -> Hero hat {Heroes[0].Lifepoints} Lebenspunkte " + "\n");
                     }
-                    //Orc Attack parrierd
+                    //Orc Attacke parrierd
                     else if (AttackrndO < Orcs[0].Attackvalue && DefendrndH <= Orcs[0].Paradevalue)
                     {
-                         Console.WriteLine("Attacke vom Ork parriert" + "\n");
+                         Console.WriteLine("Aktion Ork -> Angriff vom Ork parriert" + "\n");
                     }
                     // Orc Attacke misslungen
                     else if (AttackrndO > Orcs[0].Attackvalue)
                     {
-                        Console.WriteLine("Attacke Ork misslungen" + "\n");
+                        Console.WriteLine("Aktion Ork -> Attacke auf Held misslungen" + "\n");
                     }
             }
 
-            Console.WriteLine($"Daten vom Orc : {Orcs[0].getdateRed()}");
-            Console.WriteLine($"Daten vom Orc : {Orcs[1].getdateRed()}");
+            Console.WriteLine($"Daten vom Ork : {Orcs[0].getdateRed()}");
+            Console.WriteLine($"Daten vom Ork : {Orcs[1].getdateRed()}");
             Console.WriteLine($"Daten vom Hero : {Heroes[0].getdateRed()}");
             Console.WriteLine($"Daten vom Hero : {Heroes[1].getdateRed()}");
 
