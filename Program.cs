@@ -51,7 +51,7 @@ namespace HumanvsOrc
                                 else if (AttackrndH <= Heroes[0].Attackvalue && DefendrndO > Orcs[1].Paradevalue)
                                 {
                                     Orcs[1].Lifepoints = Orcs[1].Lifepoints - Heroes[0].Damage;
-                                    Console.WriteLine($"Aktion Held -> Ork1 hat {Orcs[1].Lifepoints} Lebenspunkte ");
+                                    Console.WriteLine($"Aktion Held -> Attacke gelungen: Ork1 hat {Orcs[1].Lifepoints} Lebenspunkte ");
                                 }
                                 //Hero Attacke parrierd
                                 else if (AttackrndH < Heroes[0].Attackvalue && DefendrndO <= Orcs[1].Paradevalue)
@@ -68,7 +68,7 @@ namespace HumanvsOrc
                     else if (AttackrndH <= Heroes[0].Attackvalue && DefendrndO > Orcs[0].Paradevalue)
                     {
                         Orcs[0].Lifepoints = Orcs[0].Lifepoints - Heroes[0].Damage;
-                        Console.WriteLine($"Aktion Held ->  Ork hat {Orcs[0].Lifepoints} Lebenspunkte ");
+                        Console.WriteLine($"Aktion Held -> Attacke gelungen: Ork hat {Orcs[0].Lifepoints} Lebenspunkte ");
                     }
                     //Hero Attacke parrierd
                     else if (AttackrndH < Heroes[0].Attackvalue && DefendrndO <= Orcs[0].Paradevalue)
@@ -93,7 +93,7 @@ namespace HumanvsOrc
                             else if (AttackrndO <= Orcs[1].Attackvalue && DefendrndH > Heroes[0].Paradevalue)
                             {
                                 Heroes[0].Lifepoints = Heroes[0].Lifepoints - Orcs[1].Damage;
-                                Console.WriteLine($"Aktion Ork1 -> Hero hat {Heroes[0].Lifepoints} Lebenspunkte " + "\n");
+                                Console.WriteLine($"Aktion Ork1 -> Attacke gelungen: Hero hat {Heroes[0].Lifepoints} Lebenspunkte " + "\n");
                             }
                             //Orc1 Attacke parrierd
                             else if (AttackrndO < Orcs[1].Attackvalue && DefendrndH <= Orcs[1].Paradevalue)
@@ -110,7 +110,7 @@ namespace HumanvsOrc
                     else if (AttackrndO <= Orcs[0].Attackvalue && DefendrndH > Heroes[0].Paradevalue)
                     {
                         Heroes[0].Lifepoints = Heroes[0].Lifepoints - Orcs[0].Damage;
-                        Console.WriteLine($"Aktion Ork -> Hero hat {Heroes[0].Lifepoints} Lebenspunkte " + "\n");
+                        Console.WriteLine($"Aktion Ork -> Attacke gelungen: Hero hat {Heroes[0].Lifepoints} Lebenspunkte " + "\n");
                     }
                     //Orc Attacke parrierd
                     else if (AttackrndO < Orcs[0].Attackvalue && DefendrndH <= Orcs[0].Paradevalue)
@@ -123,7 +123,7 @@ namespace HumanvsOrc
                         Console.WriteLine("Aktion Ork -> Attacke auf Held misslungen" + "\n");
                     }
             }
-
+            Console.WriteLine($"\n\nEndwerte: ");
             Console.WriteLine($"Daten vom Ork : {Orcs[0].getdateRed()}");
             Console.WriteLine($"Daten vom Ork : {Orcs[1].getdateRed()}");
             Console.WriteLine($"Daten vom Hero : {Heroes[0].getdateRed()}");
