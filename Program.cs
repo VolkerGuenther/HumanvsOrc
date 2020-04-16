@@ -10,7 +10,7 @@ namespace HumanvsOrc
             List<Underlyings> Heroes = new List<Underlyings>();
             {
                 // --> ( Attackvalue, Paradevalue , Lifepoints, Damage)
-                Heroes.Add(new Underlyings(15, 14, 30, 6));
+                Heroes.Add(new Underlyings(15, 14, 25, 6));
                 Heroes.Add(new Underlyings(14, 15, 24, 5));
                 Heroes.Add(new Underlyings(16, 12, 33, 7));
 
@@ -30,6 +30,8 @@ namespace HumanvsOrc
             Console.WriteLine($"Daten vom Ork 1 : {Orcs[1].getdateRed()}");
             Console.WriteLine($"Daten vom Hero : {Heroes[0].getdateRed()}");
             Console.WriteLine($"Daten vom Hero 1 : {Heroes[1].getdateRed()} \n \n");
+
+            Fight_Round_Damage(Heroes[1], Heroes[2]);
 
 
             while (Heroes[0].Lifepoints >= 0) // Falls Held stirbt, wird die Schleife abgebrochen
@@ -135,6 +137,48 @@ namespace HumanvsOrc
             Console.WriteLine($"Daten vom Hero 1: {Heroes[1].getdateRed()}");
 
             Console.ReadKey();
+
+
+        }
+
+        static Underlyings Fight_Round_Damage(Underlyings Attacker, Underlyings Defender)
+        {
+            Random Cube = new Random();
+            int Attack_Cube = Cube.Next(1, 20); // Attack - Random
+            int Defend_Cube = Cube.Next(1, 20); // Defend - Random
+
+            if (Attack_Cube <= Attacker.Attackvalue && Defend_Cube > Defender.Paradevalue)
+            {
+                Defender.Lifepoints -= Attacker.Damage;
+            }
+
+            return Defender;
+
+        }
+
+        static Boolean Action_Done(int SkillValue)
+        {
+            Random Cube = new Random();
+            int Result = Cube.Next(1, 20); 
+            Console.WriteLine($"Cube: {Result} - SkillValue: {SkillValue}");
+
+            if (Result <= SkillValue)
+                return true;
+
+            return false;
+        }
+
+        static Underlyings Fight_Round_Damage2(Underlyings Attacker, Underlyings Defender)
+        {
+
+
+            if (Action_Done(Attacker.Attackvalue) && !Action_Done(Defender.Paradevalue))
+            {
+                Defender.Lifepoints -= Attacker.Damage;
+            }
+
+            return Defender;
+
         }
     }
 }
