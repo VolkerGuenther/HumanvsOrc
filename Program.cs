@@ -130,9 +130,9 @@ namespace HumanvsOrc
             }
             Console.WriteLine($"\n\nEndwerte: ");
             Console.WriteLine($"Daten vom Ork : {Orcs[0].getdateRed()}");
-            Console.WriteLine($"Daten vom Ork : {Orcs[1].getdateRed()}");
+            Console.WriteLine($"Daten vom Ork 1: {Orcs[1].getdateRed()}");
             Console.WriteLine($"Daten vom Hero : {Heroes[0].getdateRed()}");
-            Console.WriteLine($"Daten vom Hero : {Heroes[1].getdateRed()}");
+            Console.WriteLine($"Daten vom Hero 1: {Heroes[1].getdateRed()}");
 
             Console.ReadKey();
         }
