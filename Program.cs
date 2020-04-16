@@ -61,7 +61,7 @@ namespace HumanvsOrc
                                 // Hero Attacke misslungen
                                 else if (AttackrndH > Heroes[0].Attackvalue)
                                 {
-                                    Console.WriteLine("Aktion Held ->  Attacke auf dem Ork misslungen");
+                                    Console.WriteLine("Aktion Held -> Attacke auf dem Ork1 misslungen");
                                 }
                 }
                     //Hero Attacke gelungen - Orc Parade fehlgeschlagen
