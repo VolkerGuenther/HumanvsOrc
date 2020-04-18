@@ -8,7 +8,7 @@ namespace HumanvsOrc
     class Program
     {
 
-
+        public static Boolean OneAttackEachRound = true;
 
         static void Main()
         {
@@ -31,17 +31,68 @@ namespace HumanvsOrc
 
             }
 
-            foreach (var Hero in Heroes)
+            if (OneAttackEachRound) {
+                Fight_attack_perRound_start(Heroes,Orcs);
+            } else {
+                Fight_attack_multi_start(Heroes,Orcs);
+            }
+
+           
+
+        }
+
+        static void Fight_attack_perRound_start(List<Underlyings> Heroes, List<Underlyings> Orcs) 
+        {
+
+            while(Underlyings.Is_One_Alive(Heroes) && Underlyings.Is_One_Alive(Orcs)) {
+                foreach (var Hero in Heroes)
+                {
+                    if(Hero.is_Dead()) {
+                        continue;
+                    }
+                    foreach (var Orc in Orcs)
+                    {
+                        if(Orc.is_Dead()) {
+                            continue;
+                        }
+
+                        Fight_Round_Damage(Hero, Orc);
+
+                        Console.WriteLine($"{Hero.Name}     VS  {Orc.Name}");
+                        Console.WriteLine($"Attack-> Orc: {Orc.Lifepoints}");
+                    }
+                }
+
+                foreach (var Orc in Orcs)
+                {
+                    if(Orc.is_Dead()) {
+                        continue;
+                    }
+
+                    foreach (var Hero in Heroes)
+                    {
+                    }   
+                }
+                Console.WriteLine("----------------------------------------------");
+            }
+
+            // Print fight summary
+            // Who is alive, who is dead?
+            // How? foreach again
+            // Type         
+        }
+
+        static void Fight_attack_multi_start(List<Underlyings> Heroes, List<Underlyings> Orcs) {
+         foreach (var Hero in Heroes)
             {
-
-
                 foreach (var Orc in Orcs)
                 {
                     if (Hero.Is_Dead())
                     {
                         break;
                     }
-                    while (Orc.Is_Alive)
+
+                    while (Orc.Is_Alive())
                     {
                         Fight_Round_Damage(Hero, Orc);
                         Console.WriteLine($"{Hero.Name}     VS  {Orc.Name}");
@@ -61,13 +112,12 @@ namespace HumanvsOrc
 
                         Console.WriteLine("_________________________________________________________________________________________");
                     }
-
                 }
-
             }
-
         }
-
+        
+        
+        
         static Underlyings Fight_Round_Damage(Underlyings Attacker, Underlyings Defender)
         {
             Random Cube = new Random();

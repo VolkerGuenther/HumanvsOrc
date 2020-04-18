@@ -8,6 +8,18 @@ namespace HumanvsOrc
     class Underlyings
     //Properties
     {
+
+        public static Boolean Is_One_Alive(List<Underlyings> UnderlyingList) 
+        {
+            foreach(var Underlyings in UnderlyingList)   
+            {
+                if (Underlyings.Is_Alive)
+                    return true;
+            }
+
+            return false;
+        }
+
         public int Attackvalue { get; set; }
         public int Paradevalue { get; set; }
         public int Lifepoints { get; set; }
