@@ -13,7 +13,7 @@ namespace HumanvsOrc
         {
             foreach(var Underlyings in UnderlyingList)   
             {
-                if (Underlyings.Is_Alive)
+                if (Underlyings.Is_Alive())
                     return true;
             }
 

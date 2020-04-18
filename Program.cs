@@ -87,7 +87,7 @@ namespace HumanvsOrc
             {
                 foreach (var Orc in Orcs)
                 {
-                    if (Hero.Is_Dead())
+                    if (Hero.is_Dead())
                     {
                         break;
                     }
