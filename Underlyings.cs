@@ -34,6 +34,10 @@ namespace HumanvsOrc
             return false;
         }
 
+        public Boolean is_Dead() {
+            return !Is_Alive();
+        }
+
 
 
         public string getdate()

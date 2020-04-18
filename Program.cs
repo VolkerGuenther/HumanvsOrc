@@ -5,8 +5,11 @@ using System.Collections.Generic;
 
 namespace HumanvsOrc
 {
-    class Version2_Program
+    class Program
     {
+
+
+
         static void Main()
         {
             List<Underlyings> Heroes = new List<Underlyings>();
@@ -34,16 +37,16 @@ namespace HumanvsOrc
 
                 foreach (var Orc in Orcs)
                 {
-                    if (!Hero.Is_Alive())
+                    if (Hero.Is_Dead())
                     {
                         break;
                     }
-                    while (Orc.Lifepoints > 0)
+                    while (Orc.Is_Alive)
                     {
                         Fight_Round_Damage(Hero, Orc);
                         Console.WriteLine($"{Hero.Name}     VS  {Orc.Name}");
                         Console.WriteLine($"Attack-> Orc: {Orc.Lifepoints}");
-                        if (!Orc.Is_Alive())
+                        if (Orc.is_Dead())
                         {
                             break;
                         }
@@ -51,7 +54,7 @@ namespace HumanvsOrc
                         Fight_Round_Damage(Orc, Hero);
                         Console.WriteLine($"{Hero.Name}     VS  {Orc.Name}");
                         Console.WriteLine($"Attack -> Hero: {Hero.Lifepoints}");
-                        if (!Hero.Is_Alive())
+                        if (Hero.is_Dead())
                         {
                             break;
                         }

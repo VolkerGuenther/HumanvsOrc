@@ -4,7 +4,7 @@ using System.Text;
 
 namespace HumanvsOrc
 {
-    class Program
+    class Version2_Program
     {
         static void Main()
         {
