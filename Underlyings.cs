@@ -27,14 +27,17 @@ namespace HumanvsOrc
 
         public string Name { get; set; }
 
+        public string Race { get; set; }
+
         //Konstruktur
-        public Underlyings(int _attackvalue, int _paradevalue, int _lifepoints, int _damage, string _name)
+        public Underlyings(int _attackvalue, int _paradevalue, int _lifepoints, int _damage, string _name, string _race)
         {
             Attackvalue = _attackvalue;
             Paradevalue = _paradevalue;
             Lifepoints = _lifepoints;
             Damage = _damage;
             Name = _name;
+            Race = _race;
         }
 
 
@@ -46,7 +49,7 @@ namespace HumanvsOrc
             return false;
         }
 
-        public Boolean is_Dead() {
+        public Boolean Is_Dead() {
             return !Is_Alive();
         }
 
