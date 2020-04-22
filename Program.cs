@@ -8,10 +8,14 @@ namespace HumanvsOrc
     class Program
     {
 
+        // Variable
+
         public static Boolean OneAttackEachRound = true;
 
         static int tableWidth = 73; // For Text - Output Variable
 
+        /// /Main
+     
         static void Main()
         {
             List<Underlyings> Heroes = new List<Underlyings>();
@@ -44,6 +48,8 @@ namespace HumanvsOrc
 
         }
 
+
+        // Methods
 
         static Boolean Action_Done(int SkillValue)
         {
@@ -131,7 +137,7 @@ namespace HumanvsOrc
         {
             foreach (var Table_Loop in Races)
             {
-                PrintRow(Table_Loop.Race, Table_Loop.Name, Table_Loop.Lifepoints.ToString(), Table_Loop.Is_Alive().ToString());   // Alive(Table_Loop).ToString());
+                PrintRow(Table_Loop.Race, Table_Loop.Name, Table_Loop.Lifepoints.ToString(), Table_Loop.Is_Alive().ToString());
             }
         }
 

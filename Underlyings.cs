@@ -6,20 +6,9 @@ using System.Text;
 namespace HumanvsOrc
 {
     class Underlyings
-    //Properties
+
+        //Properties
     {
-
-        public static Boolean Is_One_Alive(List<Underlyings> UnderlyingList) 
-        {
-            foreach(var Underlyings in UnderlyingList)   
-            {
-                if (Underlyings.Is_Alive())
-                    return true;
-            }
-
-            return false;
-        }
-
         public int Attackvalue { get; set; }
         public int Paradevalue { get; set; }
         public int Lifepoints { get; set; }
@@ -40,6 +29,17 @@ namespace HumanvsOrc
             Race = _race;
         }
 
+        //Methods
+        public static Boolean Is_One_Alive(List<Underlyings> UnderlyingList)
+        {
+            foreach (var Underlyings in UnderlyingList)
+            {
+                if (Underlyings.Is_Alive())
+                    return true;
+            }
+
+            return false;
+        }
 
         public Boolean Is_Alive()
         {
@@ -54,6 +54,7 @@ namespace HumanvsOrc
         }
 
 
+        // For Output
 
         public string getdate()
         {
