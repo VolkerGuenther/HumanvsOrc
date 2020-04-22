@@ -44,153 +44,7 @@ namespace HumanvsOrc
 
         }
 
-        static void Fight_attack_perRound_start(List<Underlyings> Heroes, List<Underlyings> Orcs)
-        {
-
-            while (Underlyings.Is_One_Alive(Heroes) && Underlyings.Is_One_Alive(Orcs))
-            {
-                foreach (var Hero in Heroes)
-                {
-                    if (Hero.Is_Dead())
-                    {
-                        continue;
-                    }
-                    foreach (var Orc in Orcs)
-                    {
-                        if (Orc.Is_Dead())
-                        {
-                            continue;
-                        }
-
-                        Fight_Round_Damage2(Hero, Orc);
-
-                        Console.WriteLine($"{Hero.Name}     VS  {Orc.Name}");
-                        Console.WriteLine($"Attack-> Hero: {Orc.Lifepoints}");
-
-                        break;
-                    }
-                }
-
-                foreach (var Orc in Orcs)
-                {
-                    if (Orc.Is_Dead())
-                    {
-                        continue;
-                    }
-
-                    foreach (var Hero in Heroes)
-                    {
-                        if (Hero.Is_Dead())
-                        {
-                            continue;
-                        }
-
-                        Fight_Round_Damage2(Orc, Hero);
-
-                        Console.WriteLine($"{Orc.Name}     VS  {Hero.Name}");
-                        Console.WriteLine($"Attack-> Orc: {Hero.Lifepoints}");
-
-                        break;
-                    }
-                }
-                Console.WriteLine("----------------------------------------------");
-            }
-
-            // Text - Output End - Start Program///////////////////////////////////////////////////////////////////////////
-
-            PrintLine();
-            PrintRow("Race", "Name", "Lifespoints", "Alife");
-            PrintLine();
-            foreach (var Table_Orc in Orcs)
-            {
-                PrintRow(Table_Orc.Race, Table_Orc.Name, Table_Orc.Lifepoints.ToString(), Alife(Table_Orc).ToString());
-            }
-            foreach (var Table_Hero in Heroes)
-            {
-                PrintRow(Table_Hero.Race, Table_Hero.Name, Table_Hero.Lifepoints.ToString(), Alife(Table_Hero).ToString());
-            }
-
-            PrintRow("", "", "", "");
-            PrintLine();
-            Console.ReadLine();
-
-            static void PrintLine()
-            {
-                Console.WriteLine(new string('-', tableWidth));
-            }
-
-            static void PrintRow(params string[] columns)
-            {
-                int width = (tableWidth - columns.Length) / columns.Length;
-                string row = "|";
-
-                foreach (string column in columns)
-                {
-                    row += AlignCentre(column, width) + "|";
-                }
-
-                Console.WriteLine(row);
-            }
-
-            static string AlignCentre(string text, int width)
-            {
-                text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;
-
-                if (string.IsNullOrEmpty(text))
-                {
-                    return new string(' ', width);
-                }
-                else
-                {
-                    return text.PadRight(width - (width - text.Length) / 2).PadLeft(width);
-                }
-            }
-
-            // Text - Output End - End Program ///////////////////////////////////////////////////////////////////////////
-
-            // Print fight summary
-            // Who is alive, who is dead?
-            // How? foreach again
-            // Type         
-        }
-
-        static void Fight_attack_multi_start(List<Underlyings> Heroes, List<Underlyings> Orcs)
-        {
-            foreach (var Hero in Heroes)
-            {
-                foreach (var Orc in Orcs)
-                {
-                    if (Hero.Is_Dead())
-                    {
-                        break;
-                    }
-
-                    while (Orc.Is_Alive())
-                    {
-                        Fight_Round_Damage2(Hero, Orc);
-                        Console.WriteLine($"{Hero.Name}     VS  {Orc.Name}");
-                        Console.WriteLine($"Attack-> Orc: {Orc.Lifepoints}");
-                        if (Orc.Is_Dead())
-                        {
-                            break;
-                        }
-
-                        Fight_Round_Damage2(Orc, Hero);
-                        Console.WriteLine($"{Hero.Name}     VS  {Orc.Name}");
-                        Console.WriteLine($"Attack -> Hero: {Hero.Lifepoints}");
-                        if (Hero.Is_Dead())
-                        {
-                            break;
-                        }
-
-                        Console.WriteLine("_________________________________________________________________________________________");
-                    }
-                }
-            }
-
-        }
-
-        static Boolean Alife(Underlyings Table_Lifepoints)
+        static Boolean Alive(Underlyings Table_Lifepoints)
         {
             if (Table_Lifepoints.Lifepoints > 0)
             {
@@ -213,7 +67,7 @@ namespace HumanvsOrc
             return false;
         }
 
-        static Underlyings Fight_Round_Damage2(Underlyings Attacker, Underlyings Defender)
+        static Underlyings Fight_Round_Damage(Underlyings Attacker, Underlyings Defender)
         {
 
 
@@ -226,7 +80,143 @@ namespace HumanvsOrc
 
         }
 
-        // - Old Version - //
+        private static void Fight_Round(List<Underlyings> Attacker_Li, List<Underlyings> Defender_Li)
+        {
+            foreach (var Attacker in Attacker_Li)
+            {
+                if (Attacker.Is_Dead())
+                {
+                    continue;
+                }
+                foreach (var Defender in Defender_Li)
+                {
+                    if (Defender.Is_Dead())
+                    {
+                        continue;
+                    }
+
+                    Fight_Round_Damage(Attacker, Defender);
+
+                    Console.WriteLine($"{Attacker.Name}     VS  {Defender.Name} \n");
+                    Console.WriteLine($"Attack-> {Attacker.Race}: {Defender.Lifepoints}");
+
+                    break;
+                }
+            }
+        }
+
+        //////////////////////// Case : False  - Start //////////////////////////////////////////////
+
+        static void Fight_attack_multi_start(List<Underlyings> Heroes, List<Underlyings> Orcs)
+        {
+            foreach (var Hero in Heroes)
+            {
+                foreach (var Orc in Orcs)
+                {
+                    if (Hero.Is_Dead())
+                    {
+                        break;
+                    }
+
+                    while (Orc.Is_Alive())
+                    {
+                        Fight_Round_Damage(Hero, Orc);
+                        Console.WriteLine($"{Hero.Name}     VS  {Orc.Name}");
+                        Console.WriteLine($"Attack-> Orc: {Orc.Lifepoints}");
+                        if (Orc.Is_Dead())
+                        {
+                            break;
+                        }
+
+                        Fight_Round_Damage(Orc, Hero);
+                        Console.WriteLine($"{Hero.Name}     VS  {Orc.Name}");
+                        Console.WriteLine($"Attack -> Hero: {Hero.Lifepoints}");
+                        if (Hero.Is_Dead())
+                        {
+                            break;
+                        }
+
+                        Console.WriteLine("_________________________________________________________________________________________");
+                    }
+                }
+            }
+
+        }
+
+        //////////////////////// Case : False  - End //////////////////////////////////////////////
+
+        //////////////////////// Case : True  - Start //////////////////////////////////////////////
+
+        static void Fight_attack_perRound_start(List<Underlyings> Heroes, List<Underlyings> Orcs)
+        {
+
+            while (Underlyings.Is_One_Alive(Heroes) && Underlyings.Is_One_Alive(Orcs))
+            {
+                Fight_Round(Heroes, Orcs);
+                Fight_Round(Orcs, Heroes);
+
+                Console.WriteLine("----------------------------------------------");
+            }
+
+            // Text - Output End - Start Program///////////////////////////////////////////////////////////////////////////
+
+            PrintLine();
+            PrintRow("Race", "Name", "Lifespoints", "Alife");
+            PrintLine();
+            Loop_PrintRow(Orcs);
+            Loop_PrintRow(Heroes);
+            PrintLine();
+            Console.ReadLine();
+
+            static void PrintLine()
+            {
+                Console.WriteLine(new string('-', tableWidth));
+            }
+
+            static string AlignCentre(string text, int width)
+            {
+                text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;
+
+                if (string.IsNullOrEmpty(text))
+                {
+                    return new string(' ', width);
+                }
+                else
+                {
+                    return text.PadRight(width - (width - text.Length) / 2).PadLeft(width);
+                }
+            }
+
+            static void PrintRow(params string[] columns)
+            {
+                int width = (tableWidth - columns.Length) / columns.Length;
+                string row = "|";
+
+                foreach (string column in columns)
+                {
+                    row += AlignCentre(column, width) + "|";
+                }
+
+                Console.WriteLine(row);
+
+            }
+            static void Loop_PrintRow(List<Underlyings> Races)
+            {
+                foreach (var Table_Loop in Races)
+                {
+                    PrintRow(Table_Loop.Race, Table_Loop.Name, Table_Loop.Lifepoints.ToString(), Alive(Table_Loop).ToString());
+                }
+            }
+
+            // Text - Output End - End Program ///////////////////////////////////////////////////////////////////////////    
+        }
+
+        //////////////////////// Case : True  - End //////////////////////////////////////////////
+
+
+
+
+        // - Old Version - ////////////////////////////////////////
 
         //static Underlyings Fight_Round_Damage(Underlyings Attacker, Underlyings Defender)
         //{
@@ -243,7 +233,7 @@ namespace HumanvsOrc
 
         //}
 
-        // - Old Version - //
+        // - Old Version - //////////////////////////////////////
     }
 
 }
