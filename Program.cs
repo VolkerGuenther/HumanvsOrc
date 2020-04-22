@@ -105,6 +105,46 @@ namespace HumanvsOrc
             }
         }
 
+        static void PrintLine()
+        {
+            Console.WriteLine(new string('-', tableWidth));
+        }
+
+        static string AlignCentre(string text, int width)
+        {
+            text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;
+
+            if (string.IsNullOrEmpty(text))
+            {
+                return new string(' ', width);
+            }
+            else
+            {
+                return text.PadRight(width - (width - text.Length) / 2).PadLeft(width);
+            }
+        }
+
+        static void PrintRow(params string[] columns)
+        {
+            int width = (tableWidth - columns.Length) / columns.Length;
+            string row = "|";
+
+            foreach (string column in columns)
+            {
+                row += AlignCentre(column, width) + "|";
+            }
+
+            Console.WriteLine(row);
+
+        }
+        static void Loop_PrintRow(List<Underlyings> Races)
+        {
+            foreach (var Table_Loop in Races)
+            {
+                PrintRow(Table_Loop.Race, Table_Loop.Name, Table_Loop.Lifepoints.ToString(), Alive(Table_Loop).ToString());
+            }
+        }
+
         //////////////////////// Case : False  - Start //////////////////////////////////////////////
 
         static void Fight_attack_multi_start(List<Underlyings> Heroes, List<Underlyings> Orcs)
@@ -168,45 +208,6 @@ namespace HumanvsOrc
             PrintLine();
             Console.ReadLine();
 
-            static void PrintLine()
-            {
-                Console.WriteLine(new string('-', tableWidth));
-            }
-
-            static string AlignCentre(string text, int width)
-            {
-                text = text.Length > width ? text.Substring(0, width - 3) + "..." : text;
-
-                if (string.IsNullOrEmpty(text))
-                {
-                    return new string(' ', width);
-                }
-                else
-                {
-                    return text.PadRight(width - (width - text.Length) / 2).PadLeft(width);
-                }
-            }
-
-            static void PrintRow(params string[] columns)
-            {
-                int width = (tableWidth - columns.Length) / columns.Length;
-                string row = "|";
-
-                foreach (string column in columns)
-                {
-                    row += AlignCentre(column, width) + "|";
-                }
-
-                Console.WriteLine(row);
-
-            }
-            static void Loop_PrintRow(List<Underlyings> Races)
-            {
-                foreach (var Table_Loop in Races)
-                {
-                    PrintRow(Table_Loop.Race, Table_Loop.Name, Table_Loop.Lifepoints.ToString(), Alive(Table_Loop).ToString());
-                }
-            }
 
             // Text - Output End - End Program ///////////////////////////////////////////////////////////////////////////    
         }
