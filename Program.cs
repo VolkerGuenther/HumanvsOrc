@@ -44,16 +44,6 @@ namespace HumanvsOrc
 
         }
 
-        static Boolean Alive(Underlyings Table_Lifepoints)
-        {
-            if (Table_Lifepoints.Lifepoints > 0)
-            {
-                return true;
-            }
-
-            return false;
-
-        }
 
         static Boolean Action_Done(int SkillValue)
         {
@@ -141,7 +131,7 @@ namespace HumanvsOrc
         {
             foreach (var Table_Loop in Races)
             {
-                PrintRow(Table_Loop.Race, Table_Loop.Name, Table_Loop.Lifepoints.ToString(), Alive(Table_Loop).ToString());
+                PrintRow(Table_Loop.Race, Table_Loop.Name, Table_Loop.Lifepoints.ToString(), Table_Loop.Is_Alive().ToString());   // Alive(Table_Loop).ToString());
             }
         }
 

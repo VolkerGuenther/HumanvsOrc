@@ -65,10 +65,5 @@ namespace HumanvsOrc
             return "Lebenspunkte: " + Lifepoints + ", Schaden: " + Damage;
         }
 
-
-
-
-
-
     }
 }
